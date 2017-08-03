@@ -8,12 +8,18 @@ function comparisonScheme(items) {
   let a1 = Number(specifyDiscount_HalfPrice(items)[1]);
   let a2 = Number(specifyDiscount_Over30Minus6(items)[1]);
 
+  alert(a1)
+  alert(a2)
+
   if (a1<a2) {
 
     return specifyDiscount_HalfPrice(items)[0];
-  } else if (a2<a1) {
+  }else if (a1>a2){
 
     return specifyDiscount_Over30Minus6(items)[0];
+  }else if (a1===a2) {
+
+    return specifyDiscount_HalfPrice(items)[0];
   }
 }
 
@@ -56,6 +62,9 @@ function mergeItems(splitJoint) {
 }
 
 function specifyDiscount_HalfPrice(mergeItems) {
+
+
+
   let html_head = `============= 订餐明细 =============\n`;
   let html_middle = `-----------------------------------\n`;
   let html_tail = `===================================\n`;
@@ -74,6 +83,7 @@ function specifyDiscount_HalfPrice(mergeItems) {
     all += itemPrice;
     html_item += `${item.name} x ${item.count} = ${item.price * item.count}元\n`
   }
+
   let html_saveInfo = `使用优惠:\n指定菜品半价(黄焖鸡，凉皮)，省${save}元\n`;
   let html_allInfo = `总计：${all}元\n`;
 
@@ -106,7 +116,7 @@ function specifyDiscount_Over30Minus6(mergeItems) {
 
   let itemInfosAndPrice = [];
   let itemInfos = html_head + html_item + html_middle + html_saveInfo + html_middle + html_allInfo + html_tail;
-  itemInfosAndPrice.push(itemInfos,all);
+  itemInfosAndPrice.push(itemInfos,all-6);
 
   return itemInfosAndPrice;
 }

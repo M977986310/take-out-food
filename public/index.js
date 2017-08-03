@@ -1,5 +1,3 @@
-// 请把与index.html页面相关的javascript代码写在这里
-// 同时删除该注释
 $(function () {
   $("#items").html("<h2>商品信息</h2>");
   for (let item of loadAllItems()) {
@@ -40,13 +38,9 @@ $(function () {
         </tr><br><br>`)
   }
 })
-function keyPress(ob) {
-  if (!ob.value.match(/^[\+\-]?\d*?\.?\d*?$/)) ob.value = ob.t_value; else ob.t_value = ob.value; if (ob.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/)) ob.o_value = ob.value;
-}
 
 function calculatePrice() {
-  // 想办法调用`bestCharge`并且把返回的字符串
-  // 显示在html页面的`message`中
+
   let itemNumber = $(".itemNumber");
   let items = [];
   for (let i = 0; i < loadAllItems().length; i++) {
@@ -57,10 +51,10 @@ function calculatePrice() {
     items.push(item);
   }
 
+
   $("#demo").text(autoChooseBestCharge(items));
 }
 
 function clear() {
-  // 清除用户的选择，以及页面显示的信息
-  // 清除之后，用户可以继续正常使用各项功能
+  $("#demo").text('');
 }
