@@ -10,7 +10,7 @@ $(function () {
             <td>${item.price}元...</td>
             <td>数量:</td>
             <td>
-                <input type="number" name="number" id="itemNumber" style="width: 50px">
+                <input  name="number" id="itemNumber" class="itemNumber" style="width: 50px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\\D/g,'')}" >
             </td>
         </tr>
         </tr><br><br>`)
@@ -20,12 +20,12 @@ $(function () {
   for (let item of loadPromotions()) {
     let items = item.items;
     let itemsInfo = [];
-    if (items === undefined){
+    if (items === undefined) {
       itemsInfo = "";
-    }else {
-      for (let barCode of items){
-        for (let elem of loadAllItems()){
-          if (elem.id === barCode){
+    } else {
+      for (let barCode of items) {
+        for (let elem of loadAllItems()) {
+          if (elem.id === barCode) {
             itemsInfo.push(elem.name)
           }
         }
@@ -40,11 +40,24 @@ $(function () {
         </tr><br><br>`)
   }
 })
-
+function keyPress(ob) {
+  if (!ob.value.match(/^[\+\-]?\d*?\.?\d*?$/)) ob.value = ob.t_value; else ob.t_value = ob.value; if (ob.value.match(/^(?:[\+\-]?\d+(?:\.\d+)?)?$/)) ob.o_value = ob.value;
+}
 
 function calculatePrice() {
   // 想办法调用`bestCharge`并且把返回的字符串
   // 显示在html页面的`message`中
+  let itemNumber = $(".itemNumber");
+  let items = [];
+  for (let i = 0; i < loadAllItems().length; i++) {
+    let item = "";
+    item += loadAllItems()[i].id;
+    item += " x ";
+    item += $(itemNumber[i]).val();
+    items.push(item);
+  }
+
+  $("#demo").text(autoChooseBestCharge(items));
 }
 
 function clear() {

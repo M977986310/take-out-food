@@ -5,7 +5,7 @@
     <title>Take Out Food</title>
     <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
 
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./index.css"/>
 
     <script type="text/javascript" src="../src/items.js"></script>
     <script type="text/javascript" src="../src/promotions.js"></script>
@@ -14,26 +14,28 @@
 </head>
 <body>
 
-    <h1 style="margin-left: 40%">“好多肉”在线点餐系统</h1>
+<h1 style="margin-left: 40%">“好多肉”在线点餐系统</h1>
 
-    <div id="items" style="margin-left: 20%;float: left">
-        把`loadAllItems()`中的菜品信息以动态加载的方式显示在这里，并且能够让用户输入数量
+<div id="items" style="margin-left: 20%;float: left">
+    把`loadAllItems()`中的菜品信息以动态加载的方式显示在这里，并且能够让用户输入数量
+</div>
+
+<div id="promotions" style="margin-right: 20%;float: right">
+    把`loadPromotions()`中的优惠信息以动态加载的方式显示在这里，让用户看到即可
+</div>
+
+<div style="margin-top: 10%">
+    <div style="margin-left: 48%">
+        <button onclick="calculatePrice()">结算</button>
+        <button onclick="clear()">清除</button>
     </div>
 
-    <div id="promotions" style="margin-right: 20%;float: right">
-        把`loadPromotions()`中的优惠信息以动态加载的方式显示在这里，让用户看到即可
-    </div>
-
-    <div style="margin-top: 10%">
-        <div style="margin-left: 48%">
-            <button onclick="calculatePrice()">结算</button>
-            <button onclick="clear()">清除</button>
-        </div>
-
-        <pre id="message">
-        /* 请将结算后产生的汇总字符串显示在这里 */
-    </pre>
-    </div>
+    <pre id="message" style="height: auto">
+        <h3>点击结算,将自动为您算出最优惠的价格!</h3>
+            <div id="demo">
+            </div>
+        </pre>
+</div>
 
 
 </body>
